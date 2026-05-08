@@ -115,244 +115,258 @@ class ProfilePage extends StatelessWidget {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 500),
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (_) => false,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 48.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Avatar — no reveal delay so it shows immediately
-                  const AnimatedAvatarSection(),
-                  const SizedBox(height: 40),
+@override
+Widget build(BuildContext context) {
+  final screenWidth = MediaQuery.of(context).size.width;
 
-                  // Name / Bio Card with typing effect
-                  RevealOnScroll(
-                    delay: const Duration(milliseconds: 100),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 24),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF112240),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'AFIQ ALIAS',
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
+  return Scaffold(
+    body: SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            width: screenWidth > 700 ? 500 : double.infinity,
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth > 700 ? 0 : 20,
+              vertical: 40,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
 
-                          // ── Typing effect subtitle ──
-                          const TypingText(
-                            texts: [
-                              'Software Engineering Student',
-                              'Flutter Developer',
-                              'UI/UX Enthusiast',
-                              'Web & Mobile Coder',
-                            ],
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.white70,
-                            ),
-                          ),
+                // Avatar
+                const AnimatedAvatarSection(),
+                const SizedBox(height: 40),
 
-                          const SizedBox(height: 16),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(
-                                255,
-                                131,
-                                64,
-                                64,
-                              ).withOpacity(0.15),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.local_fire_department,
-                                  size: 18,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'Proud Perakian',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white.withOpacity(0.9),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          const SizedBox(height: 20),
-                          Divider(
-                            color: Colors.white.withOpacity(0.1),
-                            thickness: 1,
-                            indent: 32,
-                            endIndent: 32,
-                          ),
-                          const SizedBox(height: 16),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.0),
-                            child: Text(
-                              '"Passionate about turning ideas into clean code and building modern digital experiences."',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontStyle: FontStyle.italic,
-                                color: Color(0xFF00E5FF),
-                                height: 1.5,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                // Name Card
+                RevealOnScroll(
+                  delay: const Duration(milliseconds: 100),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 20,
                     ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Info Cards Row
-                  RevealOnScroll(
-                    delay: const Duration(milliseconds: 200),
-                    child: Row(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF112240),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: _buildInfoCard(
-                            icon: Icons.cake,
-                            title: 'Date of Birth',
-                            value: '01 Dec 2004',
+                        Text(
+                          'AFIQ ALIAS',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: screenWidth > 700 ? 40 : 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 1.2,
                           ),
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: _buildInfoCard(
-                            icon: Icons.location_on,
-                            title: 'Hometown',
-                            value: 'Seri Manjung, Perak',
+
+                        const SizedBox(height: 8),
+
+                        const TypingText(
+                          texts: [
+                            'Software Engineering Student',
+                            'Flutter Developer',
+                            'UI/UX Enthusiast',
+                            'Web & Mobile Coder',
+                          ],
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white70,
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(
+                              255,
+                              131,
+                              64,
+                              64,
+                            ).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.local_fire_department,
+                                size: 18,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Proud Perakian',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white.withOpacity(0.9),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        Divider(
+                          color: Colors.white.withOpacity(0.1),
+                          thickness: 1,
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        const Text(
+                          '"Passionate about turning ideas into clean code and building modern digital experiences."',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic,
+                            color: Color(0xFF00E5FF),
+                            height: 1.5,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 16),
+                ),
 
-                  // ── Skills Section ──
-                  RevealOnScroll(
-                    delay: const Duration(milliseconds: 300),
-                    child: _buildSkillsSection(),
+                const SizedBox(height: 20),
+
+                // Info Cards
+                RevealOnScroll(
+                  delay: const Duration(milliseconds: 200),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildInfoCard(
+                          icon: Icons.cake,
+                          title: 'Date of Birth',
+                          value: '01 Dec 2004',
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _buildInfoCard(
+                          icon: Icons.location_on,
+                          title: 'Hometown',
+                          value: 'Seri Manjung, Perak',
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 16),
+                ),
 
-                  // Contact Section
-                  RevealOnScroll(
-                    delay: const Duration(milliseconds: 400),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF112240),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 4,
-                                height: 24,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF00E5FF),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
+                const SizedBox(height: 20),
+
+                // Skills
+                RevealOnScroll(
+                  delay: const Duration(milliseconds: 300),
+                  child: _buildSkillsSection(),
+                ),
+
+                const SizedBox(height: 20),
+
+                // Contact
+                RevealOnScroll(
+                  delay: const Duration(milliseconds: 400),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF112240),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Row(
+                          children: [
+                            Container(
+                              width: 4,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF00E5FF),
+                                borderRadius: BorderRadius.circular(2),
                               ),
-                              const SizedBox(width: 12),
-                              const Text(
-                                'Catch me here!',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            const SizedBox(width: 12),
+                            const Text(
+                              'Catch me here!',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _buildSocialSquare(
-                                icon: Icons.email_outlined,
-                                tooltip: 'Email Me: afiqalias224@gmail.com',
-                                onPressed: () =>
-                                    _launchURL('mailto:afiqalias224@gmail.com'),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          spacing: 20,
+                          runSpacing: 20,
+                          children: [
+                            _buildSocialSquare(
+                              icon: Icons.email_outlined,
+                              tooltip: 'Email Me',
+                              onPressed: () => _launchURL(
+                                'mailto:afiqalias224@gmail.com',
                               ),
-                              _buildSocialSquare(
-                                icon: Icons.phone_outlined,
-                                tooltip: 'Call Me: +60 11 3641 4519',
-                                onPressed: () =>
-                                    _launchURL('tel:+601136414519'),
+                            ),
+                            _buildSocialSquare(
+                              icon: Icons.phone_outlined,
+                              tooltip: 'Call Me',
+                              onPressed: () =>
+                                  _launchURL('tel:+601136414519'),
+                            ),
+                            _buildSocialSquare(
+                              icon: FontAwesomeIcons.tiktok,
+                              tooltip: 'TikTok',
+                              onPressed: () => _launchURL(
+                                'https://www.tiktok.com/',
                               ),
-                              _buildSocialSquare(
-                                icon: FontAwesomeIcons.tiktok,
-                                tooltip: 'Follow on TikTok',
-                                onPressed: () => _launchURL(
-                                  'https://www.tiktok.com/@aafiqalias?_r=1&_t=ZS-968iEZLIHrR',
-                                ),
+                            ),
+                            _buildSocialSquare(
+                              icon: FontAwesomeIcons.instagram,
+                              tooltip: 'Instagram',
+                              onPressed: () => _launchURL(
+                                'https://www.instagram.com/',
                               ),
-                              _buildSocialSquare(
-                                icon: FontAwesomeIcons.instagram,
-                                tooltip: 'Follow on Instagram',
-                                onPressed: () => _launchURL(
-                                  'https://www.instagram.com/aafiqalias?igsh=eGJnd2pzM3c5enZl&utm_source=qr',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   // ── Skills Section builder ──
   Widget _buildSkillsSection() {
