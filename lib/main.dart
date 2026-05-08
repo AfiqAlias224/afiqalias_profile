@@ -171,7 +171,7 @@ class ProfilePage extends StatelessWidget {
                               'Software Engineering Student',
                               'Flutter Developer',
                               'UI/UX Enthusiast',
-                              'Web Developer',
+                              'Web & Mobile Coder',
                             ],
                             style: TextStyle(
                               fontSize: 18,
@@ -361,20 +361,20 @@ class ProfilePage extends StatelessWidget {
     final techTags = [
       'Flutter',
       'Dart',
-      'Java',
+      'Firebase',
+      'Git',
       'Figma',
-      'Adobe Photoshop',
-      'C++',
-      'HTML',
-      'CSS',
+      'Python',
+      'REST APIs',
+      'UI/UX',
     ];
 
     final skills = [
-      _SkillData('Flutter / Dart', 0.75),
-      _SkillData('UI / UX Design', 0.80),
-      _SkillData('Java', 0.75),
-      _SkillData('C++', 0.80),
-      _SkillData('Database Management', 0.80),
+      _SkillData('Flutter / Dart', 0.85),
+      _SkillData('UI / UX Design', 0.75),
+      _SkillData('Firebase', 0.65),
+      _SkillData('Python', 0.60),
+      _SkillData('Git & Version Control', 0.80),
     ];
 
     return Container(
